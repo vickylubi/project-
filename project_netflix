@@ -1,0 +1,22 @@
+# Importing pandas and matplotlib
+import pandas as pd
+import matplotlib.pyplot as plt
+netflix_df = pd.read_csv("netflix_data.csv")
+
+# Assuming netflix_df is already defined somewhere in the notebook
+nineties_df = netflix_df[(netflix_df["release_year"] >= 1990) & (netflix_df["release_year"] <= 1999)]
+
+# Plotting the histogram of the duration of these movies
+plt.hist (nineties_df["duration"])
+plt.show()
+
+
+# Counting the number of movies with action duration greater than 90
+action_df = nineties_df[nineties_df["genre"] == "Action"]
+short_movie_count = 0
+for label, row in action_df.iterrows():
+    if row["duration"] < 90:
+        short_movie_count = short_movie_count + 1
+    else: 
+        short_movie_count = short_movie_count 
+print(short_movie_count)
